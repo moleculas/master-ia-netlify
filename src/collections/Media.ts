@@ -12,10 +12,10 @@ import { authenticated } from '../access/authenticated'
 export const Media: CollectionConfig = {
   slug: 'media',
   access: {
-    create: () => true,
-    delete: () => true,
-    read: () => true,
-    update: () => true,
+    create: authenticated,
+    delete: authenticated,
+    read: anyone,
+    update: authenticated,
   },
   admin: {
     useAsTitle: 'filename',
