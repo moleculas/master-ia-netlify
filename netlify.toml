@@ -1,5 +1,5 @@
 [build]
-  command = "SKIP_TYPESCRIPT_CHECK=true pnpm build"
+  command = "pnpm build"
   publish = ".next"
 
 [[plugins]]
@@ -7,14 +7,6 @@
 
 [functions]
   node_bundler = "esbuild"
-  external_node_modules = ["@payloadcms/db-mongodb"]
 
 [build.environment]
-  NEXT_PRIVATE_TARGET = "server"
   NODE_VERSION = "20"
-
-[[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/___netlify-server-handler"
-  status = 200
-  force = true

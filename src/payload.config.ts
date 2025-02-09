@@ -57,7 +57,7 @@ export default buildConfig({
     url: process.env.DATABASE_URI || '',
     connectOptions: {
       retryWrites: true,
-      w: 'majority',
+      w: 'majority'
     }
   }),
   collections: [Pages, Posts, Media, Categories, Users],
@@ -77,7 +77,6 @@ export default buildConfig({
     access: {
       run: ({ req }: { req: PayloadRequest }): boolean => {
         if (req.user) return true
-
         const authHeader = req.headers.get('authorization')
         return authHeader === `Bearer ${process.env.CRON_SECRET}`
       },
