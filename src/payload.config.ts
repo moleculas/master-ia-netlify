@@ -15,6 +15,8 @@ import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 
+import mongoose from 'mongoose'
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -25,8 +27,30 @@ try {
 } catch (e) {
   sharp = null
 }
-console.log('Connecting to database with URI:', process.env.DATABASE_URI);
+console.log('Environment variables:');
+console.log('DATABASE_URI length:', process.env.DATABASE_URI?.length);
+console.log('DATABASE_URI starts with:', process.env.DATABASE_URI?.substring(0, 20));
+console.log('DATABASE_URI contains mongodb+srv:', process.env.DATABASE_URI?.includes('mongodb+srv'));
 
+try {
+  mongoose.set('debug', true);
+
+  const connection = mongoose.createConnection(process.env.DATABASE_URI || '', {
+    retryWrites: true,
+    w: 'majority'
+  });
+
+  connection.on('connected', () => {
+    console.log('Mongoose connection successful');
+  });
+
+  connection.on('error', (error) => {
+    console.error('Mongoose connection error:', error);
+  });
+
+} catch (error) {
+  console.error('Error trying to connect to MongoDB:', error);
+}
 export default buildConfig({
   admin: {
     components: {
