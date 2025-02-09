@@ -7,6 +7,16 @@
 
 [functions]
   node_bundler = "esbuild"
+  external_node_modules = ["@payloadcms/db-mongodb", "payload"]
+  included_files = ["dist/**", "public/**"]
 
 [build.environment]
   NODE_VERSION = "20"
+  SHARP_IGNORE_GLOBAL = "true"
+  NEXT_SHARP_PATH = "/tmp/node_modules/sharp"
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/.netlify/functions/___netlify-server-handler"
+  status = 200
+  force = true
