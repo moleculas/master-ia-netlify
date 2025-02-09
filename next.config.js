@@ -6,21 +6,20 @@ const NEXT_PUBLIC_SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://loc
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
+  experimental: {
+    serverActions: true,
+  },
   images: {
+    domains: ['master-ia-payload.netlify.app'],
     remotePatterns: [
-      ...[NEXT_PUBLIC_SERVER_URL].map((item) => {
-        const url = new URL(item)
-        return {
-          hostname: url.hostname,
-          protocol: url.protocol.replace(':', ''),
-        }
-      }),
+      {
+        protocol: 'https',
+        hostname: '**',
+      }
     ],
   },
   reactStrictMode: true,
   redirects,
 }
 
-const configWithPayload = withPayload(nextConfig)
-
-export default configWithPayload
+export default withPayload(nextConfig)
