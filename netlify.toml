@@ -14,9 +14,3 @@
   NODE_VERSION = "20"
   SHARP_IGNORE_GLOBAL = "true"
   NEXT_SHARP_PATH = "/tmp/node_modules/sharp"
-
-[[redirects]]
-  from = "/admin/*"
-  to = "/.netlify/functions/___netlify-server-handler"
-  status = 200
-  force = true
