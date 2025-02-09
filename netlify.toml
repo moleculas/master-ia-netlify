@@ -7,9 +7,16 @@
 
 [functions]
   node_bundler = "esbuild"
-  external_node_modules = ["@payloadcms/db-mongodb"]
+  external_node_modules = ["@payloadcms/db-mongodb", "payload"]
+  included_files = ["dist/**"]
 
 [build.environment]
   NEXT_USE_NETLIFY_EDGE = "true"
   NEXT_PRIVATE_TARGET = "server"
   NODE_VERSION = "20"
+  MONGODB_URI = "mongodb+srv://isaiasherreroflorensa:yBP5ypCLcvfYMkIB@cluster0.1djev.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/.netlify/functions/___netlify-server-handler"
+  status = 200
