@@ -25,6 +25,7 @@ try {
 } catch (e) {
   sharp = null
 }
+console.log('Connecting to database with URI:', process.env.DATABASE_URI);
 
 export default buildConfig({
   admin: {
@@ -65,7 +66,7 @@ export default buildConfig({
     connectOptions: {
       retryWrites: true,
       w: 'majority'
-    }
+    },
   }),
   collections: [Pages, Posts, Media, Categories, Users],
   cors: ['https://master-ia-payload.netlify.app', getServerSideURL()].filter(Boolean),
