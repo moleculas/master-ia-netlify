@@ -8,36 +8,16 @@
 [functions]
   node_bundler = "esbuild"
   external_node_modules = ["@payloadcms/db-mongodb", "payload"]
-  included_files = ["dist/**"]
 
 [build.environment]
   NEXT_USE_NETLIFY_EDGE = "true"
   NEXT_PRIVATE_TARGET = "server"
-  NEXT_TELEMETRY_DISABLED = "1"
   NODE_VERSION = "20"
-
-[[redirects]]
-  from = "/_next/static/*"
-  to = "/_next/static/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/admin"
-  to = "/admin/"
-  status = 301
-  force = true
 
 [[redirects]]
   from = "/admin/*"
   to = "/.netlify/functions/___netlify-server-handler"
   status = 200
-  force = true
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/___netlify-server-handler"
-  status = 200
-  force = true
 
 [[redirects]]
   from = "/*"
