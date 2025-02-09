@@ -12,3 +12,7 @@ public/media/
 
 public/robots.txt
 public/sitemap*.xml
+
+test-crdentials.js
+migrate-images.js
+

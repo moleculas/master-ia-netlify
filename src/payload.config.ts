@@ -27,10 +27,6 @@ try {
 } catch (e) {
   sharp = null
 }
-console.log('Environment variables:');
-console.log('DATABASE_URI length:', process.env.DATABASE_URI?.length);
-console.log('DATABASE_URI starts with:', process.env.DATABASE_URI?.substring(0, 20));
-console.log('DATABASE_URI contains mongodb+srv:', process.env.DATABASE_URI?.includes('mongodb+srv'));
 
 try {
   mongoose.set('debug', true);
